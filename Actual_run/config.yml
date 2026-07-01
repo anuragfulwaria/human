@@ -1,0 +1,57 @@
+# config/config.yaml
+
+# Camera Settings
+camera:
+  source: 0  # 0 for webcam, or "rtsp://ip:port/stream" for IP camera
+  width: 1280
+  height: 720
+  fps: 30
+
+# Detection Settings
+detection:
+  model: "yolov8n.pt"  # Options: yolov8n.pt, yolov8s.pt, yolov8m.pt
+  confidence_threshold: 0.5  # 0.0 to 1.0
+  process_every_n_frames: 2  # Process every nth frame for performance
+  
+# Restricted Zone (polygon coordinates in pixels)
+# Define your restricted area - example is a rectangle
+restricted_zone:
+  points:
+    - [200, 150]   # Top-left
+    - [1000, 150]  # Top-right
+    - [1000, 600]  # Bottom-right
+    - [200, 600]   # Bottom-left
+  color: [0, 0, 255]  # BGR - Red
+  thickness: 3
+
+# Alert Settings
+alerts:
+  enable_visual: true
+  enable_audio: true
+  enable_snapshots: true
+  enable_email: false
+  enable_logging: true
+  
+  cooldown_seconds: 5  # Minimum time between alerts
+  
+  # Email settings (if enabled)
+  email:
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    sender_email: "your-email@gmail.com"
+    sender_password: "your-app-password"
+    recipient_email: "safety-team@company.com"
+
+# Display Settings
+display:
+  show_fps: true
+  show_detection_boxes: true
+  show_zone: true
+  window_name: "Manufacturing Safety Monitor"
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "logs/safety_system.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
